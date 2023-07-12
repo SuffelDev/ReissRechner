@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Reiss-Rechner</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <h1 class="pageTitle"> Reiss-Rechner</h1>
+        <input type="button" id="button0" class="selectedTab" value="Liste bearbeiten" onclick="openTab(0)">
+        <input type="button" id="button1" class="unselectedTab" value="Einzelvergleich" onclick="openTab(1)">
+        <input type="button" id="button2" class="unselectedTab" value="Alle Kombinationen" onclick="openTab(2)">
+        <input type="button" id="button3" class="unselectedTab" value="Allgemeine Daten" onclick="openTab(3)">
+
+        <div id="tabContent">
+            <div id="tab0">
+                <div class="leftDiv">
+                <label class="formElement">Name</label>
+                <input class="formElement" type="text" id="nameInput"/>
+                <p></p>
+                <label class="formElement">1. Macht</label>
+                <input class="formElement" type="number" value="0" id="input1">
+                <label class="formElement">2. Unabhängigkeit</label>
+                <input class="formElement" type="number"  value="0" id="input2">
+                <label class="formElement">3. Neugier</label>
+                <input class="formElement" type="number"  value="0" id="input3">
+                <label class="formElement">4. Anerkennung</label>
+                <input class="formElement" type="number"  value="0" id="input4">
+
+                <label class="formElement">5. Ordnung</label>
+                <input class="formElement" type="number" value="0" id="input5">
+                <label class="formElement">6. Sparen</label>
+                <input class="formElement" type="number"  value="0" id="input6">
+                <label class="formElement">7. Ehre</label>
+                <input class="formElement" type="number"  value="0" id="input7">
+                <label class="formElement">8. Idealismus</label>
+                <input class="formElement" type="number"  value="0" id="input8">
+
+                <label class="formElement">9. Beziehungen</label>
+                <input class="formElement" type="number" value="0" id="input9">
+                <label class="formElement">10. Familie</label>
+                <input class="formElement" type="number"  value="0" id="input10">
+                <label class="formElement">11. Status</label>
+                <input class="formElement" type="number"  value="0" id="input11">
+                <label class="formElement">12. Rache</label>
+                <input class="formElement" type="number"  value="0" id="input12">
+
+                <label class="formElement">13. Romantik</label>
+                <input class="formElement" type="number" value="0" id="input13">
+                <label class="formElement">14. Ernährung</label>
+                <input class="formElement" type="number"  value="0" id="input14">
+                <label class="formElement">15. Körperliche Aktivität</label>
+                <input class="formElement" type="number"  value="0" id="input15">
+                <label class="formElement">16. Ruhe</label>
+                <input class="formElement" type="number"  value="0" id="input16">
+
+                <input class="formElement" type="button"  value="hinzufügen" onclick="addToList()">
+                </div>
+                <div class="rightDiv">
+                    <label class="formElement">Listenname</label>
+                    <input class="formElement" type="text" id="listname">
+                    <input class="formElement" type="button" id="loadListButton" value="Liste laden" onclick="getCurrentList()"/>
+                    <label class="formElement">Namen eingeben</label>
+                    <input class="formElement" type="text" id="deleteName">
+                    <input class="formElement" type="button" id="removeButton" value="Löschen" onclick="removeItem()"/>
+                    <input class="formElement" type="button" id="removeButton" value="Liste löschen" onclick="deleteList()"/>
+                    <input class="formElement" type="button" id="presetButton"  value="Presets laden" onclick="loadPresets()"/>
+                    <label class="formElement" id="listStatusLabel"></label> 
+                    <table>
+                        <tbody id="listShowcase">
+                            <tr>
+                                <th>Name</th>
+                                <th>01</th>
+                                <th>02</th>
+                                <th>03</th>
+                                <th>04</th>
+                                <th>05</th>
+                                <th>06</th>
+                                <th>07</th>
+                                <th>08</th>
+                                <th>09</th>
+                                <th>10</th>
+                                <th>11</th>
+                                <th>12</th>
+                                <th>13</th>
+                                <th>14</th>
+                                <th>15</th>
+                                <th>16</th>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+            <div id="tab1" class="hidden">
+                <h1>Wähle 2 Ergebnisse zum Vergleich aus</h1>
+                <label class="selectionLabel">A:</label>
+               <select name="firstPerson" id="firstPerson">
+               </select>
+               <label class="selectionLabel">B:</label>
+               <select name="secondPerson"  id="secondPerson">
+               </select>
+               <input class="formElement"  type="button" id="loadListButton" value="Vergleichen" onclick="compareIndividuals()"/>
+               <input type="checkbox" id="showIndividualData" name="showIndividualData">Einzelne Antworten anzeigen</input>
+               <label class="formElement" id="percentageResultLabel" ></label>
+               <canvas id="canvas" width="1000" height="400" ></canvas>
+               <div class="container space-between">
+                <label>1.Ma</label>
+                <label>2.Un</label>
+                <label>3.Ne</label>
+                <label>4.An</label>
+                <label>5.Or</label>
+                <label>6.Sp</label>
+                <label>7.Eh</label>
+                <label>8.Id</label>
+                <label>9.Be</label>
+                <label>10.Fa</label>
+                <label>11.St</label>
+                <label>12.Ra</label>
+                <label>13.Ro</label>
+                <label>14.Er</label>
+                <label>15.Ko</label>
+                <label>16.Ru</label>
+               </div>
+            </div>
+            <div id="tab2" class="hidden">
+                <h1>Alle Kombinationen</h1>
+                <input class="bigFormElement" type="button" value="Ergebnisse berechnen" onclick="allCombinations()">
+                <ol id="compatibilityList">
+                    
+                </ol>
+            </div>
+            <div id="tab3" class="hidden">
+                <input class="bigFormElement" type="button" value="Ergebnisse berechnen" onclick="displayMotivationPercent()">
+                <div class="leftDiv">
+                <h2>Durchschnitt der gesamten Liste</h2>
+                <h3 class="bigFormElement"> 1. Macht</h3>
+                <label class="bigFormElement" id="motivationPercent1">0%</label>
+                <h3 class="bigFormElement">2. Unabhängigkeit</h3>
+                <label class="bigFormElement" id="motivationPercent2">0%</label>
+                <h3 class="bigFormElement">3. Neugier</h3>
+                <label class="bigFormElement" id="motivationPercent3">0%</label>
+                <h3 class="bigFormElement">4. Anerkennung</h3>
+                <label class="bigFormElement" id="motivationPercent4">0%</label>
+                <h3 class="bigFormElement">5. Ordnung</h3>
+                <label class="bigFormElement" id="motivationPercent5">0%</label>
+                <h3 class="bigFormElement">6. Sparen</h3>
+                <label class="bigFormElement" id="motivationPercent6">0%</label>
+                <h3 class="bigFormElement">7. Ehre</h3>
+                <label class="bigFormElement" id="motivationPercent7">0%</label>
+                <h3 class="bigFormElement">8. Idealismus</h3>
+                <label class="bigFormElement" id="motivationPercent8">0%</label>
+                <h3 class="bigFormElement">9. Beziehungen</h3>
+                <label class="bigFormElement" id="motivationPercent9">0%</label>
+                <h3 class="bigFormElement">10. Familie</h3>
+                <label class="bigFormElement" id="motivationPercent10">0%</label>
+                <h3 class="bigFormElement">11. Status</h3>
+                <label class="bigFormElement" id="motivationPercent11">0%</label>
+                <h3 class="bigFormElement">12. Rache</h3>
+                <label class="bigFormElement" id="motivationPercent12">0%</label>
+                <h3 class="bigFormElement">13. Romantik</h3>
+                <label class="bigFormElement" id="motivationPercent13">0%</label>
+                <h3 class="bigFormElement">14. Ernährung</h3>
+                <label class="bigFormElement" id="motivationPercent14">0%</label>
+                <h3 class="bigFormElement">15. körperliche Aktivität</h3>
+                <label class="bigFormElement" id="motivationPercent15">0%</label>
+                <h3 class="bigFormElement">16. Ruhe</h3>
+                <label class="bigFormElement" id="motivationPercent16">0%</label>
+                </div>
+                <div class="rightDiv" id="averageCompatibilityList">
+                    <h2>Durchschnittliche Abweichung</h2>
+                </div>
+                
+            </div>
+        </div>
+    </body>
+    <script src="script.js"></script>
+    <script src="tabs.js"></script>
+    <script src="presets.js"></script>
+</html>
